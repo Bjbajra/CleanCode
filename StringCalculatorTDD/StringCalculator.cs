@@ -25,9 +25,19 @@ namespace StringCalculatorTDD
                 numberString = String.Join('\n', splitInput.Skip(1));
                 delimiters.Add(Convert.ToChar(newDelimiter));
             }
-            int result = numberString.Split(delimiters.ToArray())
-                .Select(s => int.Parse(s))
-                .Sum();
+
+            IEnumerable<int>? numberList = numberString.Split(delimiters.ToArray())
+                .Select(s => int.Parse(s));
+
+            var negatives = numberList.Where(n => n < 0);
+
+            if (negatives.Any())
+            {
+                string negativeString = String.Join(',', negatives
+                    .Select(n => n.ToString()));
+                throw new Exception($"Negatives not allowed: {negativeString}");
+            }
+            int result = numberList.Sum();
 
             return result;
         }

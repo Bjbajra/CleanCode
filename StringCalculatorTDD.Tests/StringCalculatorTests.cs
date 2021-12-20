@@ -99,5 +99,22 @@ namespace StringCalculatorTDD.Tests
             Assert.That(expectedResult, Is.EqualTo(calculatedResult));
 
         }
+
+        [Test]
+        [TestCase("-1, 2", "Negatives not allowed: -1")]     
+        public void StringCalculator_GivenStringWithNegativeInputs_throwNegativesNotAllowed(string numbers, string expectedMessage)
+        {
+            //Arrange
+            //Action action = () => _calculator.Add(numbers);
+            Action action = () => _calculator.Add(numbers);
+
+            //Act
+            //var ex = Assert.Throws<Exception>(action);
+            var ex = Assert.Throws<Exception>(() => action());
+
+            //Assert
+            Assert.That(expectedMessage, Is.EqualTo(ex.Message));
+
+        }
     }
 }

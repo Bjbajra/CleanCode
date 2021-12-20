@@ -39,6 +39,20 @@ namespace StringCalculatorTDD.Tests
             Assert.That(expectedResult, Is.EqualTo(calculatedResult));
 
         }
-        
+
+        [Test]
+        [TestCase("1,2", 3)]
+        [TestCase("2,3", 5)]
+        public void StringCalculator_GivenStringWithTwoCommaSeperatedNumber_ReturnsSum(string numbers, int expectedResult)
+        {
+            //Arrange
+
+            //Act
+            var calculatedResult = _calculator.Add(numbers);
+
+            //Assert
+            Assert.That(expectedResult, Is.EqualTo(calculatedResult));
+
+        }
     }
 }

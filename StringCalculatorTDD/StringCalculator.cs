@@ -15,7 +15,8 @@ namespace StringCalculatorTDD
                 return 0;
             }
 
-            var result = numbers.Split(',')
+            char[]? seperators = new[] { ',', '\n' };
+            int result = numbers.Split(seperators)
                 .Select(s => int.Parse(s))
                 .Sum();
 

@@ -85,5 +85,19 @@ namespace StringCalculatorTDD.Tests
             Assert.That(expectedResult, Is.EqualTo(calculatedResult));
 
         }
+
+        [Test]
+        [TestCase("//;\n1;2;3", 6)]     
+        public void StringCalculator_GivenStringWithCustomDelimiters_ReturnsSum(string numbers, int expectedResult)
+        {
+            //Arrange
+
+            //Act
+            var calculatedResult = _calculator.Add(numbers);
+
+            //Assert
+            Assert.That(expectedResult, Is.EqualTo(calculatedResult));
+
+        }
     }
 }

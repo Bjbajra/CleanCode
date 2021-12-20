@@ -15,12 +15,21 @@ namespace StringCalculatorTDD
                 return 0;
             }
 
-            char[]? seperators = new[] { ',', '\n' };
-            int result = numbers.Split(seperators)
+            string numberString = numbers;
+            List<char>? delimiters = new List<char> { ',', '\n' };
+
+            if (numberString.StartsWith("//"))
+            {
+                var splitInput = numberString.Split('\n');
+                var newDelimiter = splitInput.First().Trim('/');
+                numberString = String.Join('\n', splitInput.Skip(1));
+                delimiters.Add(Convert.ToChar(newDelimiter));
+            }
+            int result = numberString.Split(delimiters.ToArray())
                 .Select(s => int.Parse(s))
                 .Sum();
 
-            return (result);
+            return result;
         }
     }
 }
